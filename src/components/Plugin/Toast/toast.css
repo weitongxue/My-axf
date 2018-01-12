@@ -1,0 +1,12 @@
+.cartoon_active {
+  z-index: 1000;
+  position: fixed;
+  -webkit-transform: scale(0.6) rotate(0);
+  -ms-transform: scale(0.6) rotate(0);
+  -o-transform: scale(0.6) rotate(0);
+  opacity: 0.9;
+  border-radius: 50%;
+  -webkit-transition: all 0.8s cubic-bezier(0.58, -1, 0.99, 1.07);
+  -ms-transition: all 0.8s cubic-bezier(0.58, -1, 0.99, 1.07);
+  -o-transition: all 0.8s cubic-bezier(0.58, -1, 0.99, 1.07);
+}
