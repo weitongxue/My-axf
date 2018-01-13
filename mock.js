@@ -49,7 +49,9 @@ var data = Mock.mock({
             //保质期
             "time|1-24":10,
             //商品详情
-            "content":"@cparagraph()"
+            "content":"@cparagraph()",
+            //是否收藏(默认没有收藏)
+            "favor":"false"
         }
     ],
     //用户信息

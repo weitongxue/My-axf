@@ -25,7 +25,7 @@
       <!-- 底部 -->
       <div class="footer">
         <div class="collect">
-          <span class="collect-span">收藏</span>
+          <span class="collect-span" @click="favorProduct(productInfo)">收藏</span>
           <div class="collect-add">
             添加商品：
             <div class="btn-wrap">
@@ -75,7 +75,7 @@ export default {
   },
   data(){
     return {
-      productInfo:''
+      productInfo:'',
     }
   },
  computed: {
@@ -91,6 +91,10 @@ export default {
     }
   },
   methods:{
+    //收藏商品
+    favorProduct(productInfo){
+      console.log(productInfo.favor)
+    },
      //添加商品
     addProduct(){
       let productInfo =  this.productInfo
@@ -215,6 +219,10 @@ export default {
   padding-top: 1rem;
   font-size: 1.2rem;
   background: url('./images/collect.png') .4rem 1rem no-repeat;
+  background-size: 1.8rem auto;
+}
+.collect-span.active{
+  background: url('./images/collectActive.png') .4rem 1rem no-repeat;
   background-size: 1.8rem auto;
 }
 .collect-add{
