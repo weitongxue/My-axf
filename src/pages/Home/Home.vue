@@ -114,6 +114,9 @@ export default {
     background:url("./images/loading.gif") center center no-repeat;
     background-size: 2rem;
   }
+  .main{
+    font-size: 1.2rem;
+  }
   .banner{
     width: 100%;
     height: 120px;

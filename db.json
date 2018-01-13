@@ -8863,26 +8863,6 @@
       "id": 15
     },
     {
-      "product_id": 48,
-      "userId": 3,
-      "num": 13,
-      "product_img": "http://dummyimage.com/94x94/c879f2",
-      "product_name": "技快器时金",
-      "product_price": 19,
-      "checked": true,
-      "id": 16
-    },
-    {
-      "product_id": 4,
-      "userId": 3,
-      "num": 12,
-      "product_img": "http://dummyimage.com/94x94/79f2a1",
-      "product_name": "应族子己",
-      "product_price": 24,
-      "checked": true,
-      "id": 17
-    },
-    {
       "product_id": 49,
       "userId": 3,
       "num": 7,
@@ -8891,16 +8871,6 @@
       "product_price": 29,
       "checked": true,
       "id": 18
-    },
-    {
-      "product_id": 77,
-      "userId": 3,
-      "num": 3,
-      "product_img": "http://dummyimage.com/94x94/7999f2",
-      "product_name": "厂这参阶百",
-      "product_price": 90,
-      "checked": true,
-      "id": 20
     },
     {
       "product_id": 48,

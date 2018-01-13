@@ -60,6 +60,9 @@ export default {
 
 <style lang="less" scoped>
 @import url("../../styles/var.less");
+.main{
+    bottom: 0;
+}
 .pic-wrap{
     width: 100%;
     height: 6.9rem;

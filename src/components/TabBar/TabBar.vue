@@ -42,8 +42,9 @@ export default {
 
 <style lang="less" scoped>
     .tab{
+        font-size: 1.2rem;
         position: fixed;
-        height: 4.8rem;
+        height: 4.9rem;
         bottom: 0;
         left: 0;
         right: 0;

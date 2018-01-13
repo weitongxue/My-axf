@@ -13,6 +13,7 @@ const Site = () => import ('../pages/Site/Site')
 const AddSite = () => import ('../pages/AddSite/AddSite')
 const AmendSite = () => import ('../pages/AmendSite/AmendSite')
 const SelectSite = () => import ('../pages/SelectSite/SelectSite')
+const Favor = () => import ('../pages/Favor/Favor')
 
 
 export default new Router({
@@ -76,6 +77,10 @@ export default new Router({
                 // 设置页面不缓存
                 notKeepAlive: false
               }
+        },
+        {
+            path:'/favor',
+            component:Favor,
         }
     ]
 })
