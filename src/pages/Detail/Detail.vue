@@ -25,7 +25,7 @@
       <!-- 底部 -->
       <div class="footer">
         <div class="collect">
-          <span class="collect-span" @click="favorProduct(productInfo)">收藏</span>
+          <span class="collect-span" @click="favorProduct(productInfo)" :class="{'active':false}">收藏</span>
           <div class="collect-add">
             添加商品：
             <div class="btn-wrap">
@@ -93,7 +93,7 @@ export default {
   methods:{
     //收藏商品
     favorProduct(productInfo){
-      console.log(productInfo.favor)
+      //geigei
     },
      //添加商品
     addProduct(){

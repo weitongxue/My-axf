@@ -6523,7 +6523,18 @@
       "id": 1
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "product_id": 87,
+      "userId": 1,
+      "num": 2,
+      "product_img": "http://dummyimage.com/94x94/f279c8",
+      "product_name": "义七支",
+      "product_price": 75,
+      "checked": true,
+      "id": 1
+    }
+  ],
   "citys": [
     {
       "city": "深圳市",
