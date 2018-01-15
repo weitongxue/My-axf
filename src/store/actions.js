@@ -19,6 +19,12 @@ export default {
           //在本地数据库中保存该用户的购物车数据
           commit('SAVE_CARTS', res.data)
         })
+        //拿到用户的收藏列表
+        http.get(api.host + '/users/' + res.data[0].id + '/favorList')
+        .then(res => {
+          //在本地数据库中保存该用户的收藏数据
+          commit('SAVE_FAVOR_LIST', res.data)
+        })
         //保存到本地vuex中(登录成功后的状态)
         commit("SUB_MIT",res.data[0])
         return {"msg":"登录成功"}
@@ -307,6 +313,104 @@ export default {
         return {"msg":"删除地址失败"}
       }
     })
-  }
+  },
+  //添加到收藏列表
+  save_favor(store,data){
+    let favorObj = {
+      /**
+       * 用户的id
+       * 商品id
+       * 商品图片
+       * 商品名称
+       * 商品规格
+       * 商品价格
+       * 收藏的状态/
+       * 是否被选中(默认没有)
+       * check:false
+       */
+      userId : store.state.users.id,
+      product_id : data.id,
+      product_img : data.img,
+      product_name : data.name,
+      product_price:data.price,
+      product_store_nums:data.store_nums,
+      favor:data.favor,
+      checkBol:false
+    }
+    return http.post(api.host + '/favorList', favorObj)
+    .then(res =>{
+      if(res.data.id>0){
+        //添加到本地收藏列表中
+        store.commit("SAVE_FAVOR",res.data)
+        return {'msg':'添加收藏成功'}
+      }else{
+        return {'msg':'添加收藏失败'}
+      }
+    })
+  },
+  //删除收藏
+  del_favor(store,data){
+    let favorList = store.state.favorList
+    //拿到该商品在收藏列表中的id
+    let favorId 
+    for(let i = 0 ; i < favorList.length ; i++){
+      if(favorList[i].product_id == data.id)
+      favorId = favorList[i].id
+    }
+    return http.delete(api.host + '/favorList/' + favorId, data)
+    .then(res =>{
+      if(!res.data.id>0){
+        //同步删除本地的收藏
+        store.commit("DEL_FAVOR",data)
+        return {"msg":"删除收藏成功"}
+      }else{
+        return {"msg":"删除收藏失败"}
+      }
+    })
+  },
+  //切换选中的状态
+  change_check_bol(store,data){
+    return http.patch(api.host + '/favorList/' + data.id,{
+      checkBol :data.checkBol
+    })
+    .then(res =>{ 
+      if(res.data.id>0){
+        //同步更新本地状态
+        store.commit("CHANGE_CHECK_BOL",res.data)
+        return {"msg":'切换状态成功'}
+      }else{
+        return {"msg":'切换状态失败'}
+      }
+    })
+  },
+  //全选
+  change_all_true(store){
+    let favorList = store.state.favorList
+    for(let i = 0 ; i < favorList.length ; i++){
+    //更改数据里商品的选中状态为true
+      http.patch(api.host + '/favorList/' + favorList[i].id ,{
+        checkBol : true
+      })
+      .then(res=>{
+          //同步本地数据
+        store.commit("CHANGE_ALL_TRUE")
+        return {"msg":"全选成功"}
+      })
+    }
+  },
+  //全不选
+  change_all_false(store){
+    let favorList = store.state.favorList
+    for(let i = 0 ; i < favorList.length ; i++){
+      http.patch(api.host + '/favorList/'+ favorList[i].id,{
+        checkBol : false
+      })
+      .then(res=>{
+        //保存到本地
+         store.commit("CHANGE_ALL_FALSE",data)
+          return {"msg":"取消全选成功"}
+        })
+    }
+  },
 
 }

@@ -137,4 +137,62 @@ export default{
     SAVE_LOCATION(state,location){
         state.location = location
     },
+    //保存收藏列表
+    SAVE_FAVOR_LIST(state,data){
+        state.favorList = data
+    },
+    //添加的收藏
+    SAVE_FAVOR(state,data){
+        state.favorList.push(data)
+    },
+    //删除收藏
+    DEL_FAVOR(state,data){
+      let favorList = state.favorList
+      for(let i = 0 ; i < favorList.length ; i++){
+          if(favorList[i].product_id == data.id){
+            favorList.splice(i,1)
+            i--
+          }
+        break
+      }
+    },
+    //初始化商品的收藏状态
+    SAVE_FAVORS(state,data){
+        //拿到所有商品
+        let categories = state.categories
+        label:
+        for(let i = 0 ; i< categories.length ; i++){
+            let product = categories[i].product
+            for(let j = 0 ; j < product.length ; j++){
+                if(product[j].id == data.product_id){
+                    product[j].favor = data.favor
+                    break label
+                }
+            }
+        }
+    },
+    //切换收藏商品的选中状态
+    CHANGE_CHECK_BOL(state,data){
+        let favorList = state.favorList
+        for(let i = 0 ; i < favorList.length ; i++){
+            if(favorList[i].product_id == data.product_id){
+                favorList[i].checkBol = data.checkBol
+            }
+        }
+    },
+    //全选
+    CHANGE_ALL_TRUE(state){
+        let favorList = state.favorList
+        for(let i = 0 ; i < favorList.length ; i++){
+          favorList[i].checked = true
+        }
+    },
+     //全不选
+     CHANGE_ALL_FALSE(state){
+        let favorList = state.favorList
+        for(let i = 0 ; i < favorList.length ; i++){
+          favorList[i].checked = false
+        }
+    },
+   
 }

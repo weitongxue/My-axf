@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="head_wrap">
       <router-link tag="div" to='/site' class="title">{{users.id > 0?users.selectSite.site:'没有定位'}}</router-link>
       <div class="search">搜索</div>
   </div>
@@ -9,12 +9,6 @@
 import http from 'axios'
 import api from '@/api'
 export default {
-  created(){
-    if(!this.users.id>0){
-      this.$msg('提示','未登录，请登录')
-      this.$router.push('/longin')
-     }
-  },
   computed:{
     users(){
       return this.$store.state.users
@@ -27,7 +21,8 @@ export default {
 <style lang="less" scoped>
 @import url("../../styles/var.less");
 @import url("../../styles/mixin.less");
-.wrap{
+.head_wrap{
+  z-index: 1000;
   position: fixed;
   top:0;
   left: 0;

@@ -25,9 +25,9 @@
       <!-- 底部 -->
       <div class="footer">
         <div class="collect">
-          <span class="collect-span" @click="favorProduct(productInfo)" :class="{'active':false}">收藏</span>
+          <span class="collect-span" @click="favorProduct(productInfo)" :class="{'active':productInfo.favor === true}">收藏</span>
           <div class="collect-add">
-            添加商品：
+            添加商品:
             <div class="btn-wrap">
               <span @click="subProduct()">-</span>
               <span>{{productInfo.num}}</span>
@@ -88,12 +88,42 @@ export default {
     },
     coordinate(){
       return this.$store.state.coordinate
+    },
+    //拿到收藏列表
+    favorList(){
+      return this.$store.state.favorList
     }
   },
   methods:{
     //收藏商品
     favorProduct(productInfo){
-      //geigei
+      if(this.users.id>0){ 
+        //表示没有收藏过
+        
+        if(productInfo.favor === false){
+           //更改数据库里的favor值,并添加到用户的收藏列表
+          productInfo.favor = true
+          this.$store.dispatch("save_favor",productInfo)
+          .then(res =>{
+            //初始化收藏的状态
+            this.$store.commit("SAVE_FAVORS",productInfo)
+            this.$msg('提示',res.msg)
+          })
+        }else{
+          //已经收藏过，再点击的时候productInfo.favor = false ,并且删除收藏
+           productInfo.favor = false
+           this.$store.dispatch("del_favor",productInfo)
+           .then(res =>{
+              //初始化收藏的状态
+              this.$store.commit("SAVE_FAVORS",productInfo)
+              this.$msg('提示',res.msg)
+           })
+        }
+      }else{
+        this.$msg("提示","未登录，请先登录")
+        this.$router.push('/longin')
+      }
+     
     },
      //添加商品
     addProduct(){

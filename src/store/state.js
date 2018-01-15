@@ -24,5 +24,7 @@ export default{
     sites:[],
     //存储购物车图标的位置（动画的终点位置）
     location:[],
-    coordinate:[]
+    coordinate:[],
+    //用户的收藏列表
+    favorList:[]
 }

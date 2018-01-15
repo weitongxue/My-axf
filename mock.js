@@ -50,8 +50,8 @@ var data = Mock.mock({
             "time|1-24":10,
             //商品详情
             "content":"@cparagraph()",
-            //是否收藏(默认没有收藏)
-            "favor":"false"
+            //是否被收藏(默认没有收藏)
+            "favor":false
         }
     ],
     //用户信息
@@ -94,6 +94,8 @@ var data = Mock.mock({
     }
   */
   'sites': [],
+  //用户的收藏列表
+  'favorList':[]
 
 })
 
