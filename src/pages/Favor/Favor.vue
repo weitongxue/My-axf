@@ -17,7 +17,7 @@
       </ul>
       <!-- 全选和删除 -->
       <div class="footer" v-show="bol">
-        <span class="allSelect" @click="changeAllBol">全选</span>
+        <span class="allSelect" @click="changeAllBol" :class="{'active':checkedBol}">全选</span>
         <span class="deleteBtn">删除</span>
       </div>
     </div>
@@ -37,6 +37,28 @@ export default {
       checkAllBol:false
     }
   },
+   computed:{
+    //拿到收藏列表
+    favorList(){
+      return this.$store.state.favorList
+    },
+    users(){
+      return this.$store.state.users
+    },
+     //判断全选按钮的状态(true表示全选)
+    checkedBol(){
+      // 假设都是勾选的
+      let checkedBol
+      for (let i = 0; i < this.favorList.length; i++) {
+        if (!this.favorList[i].checkBol) {
+          checkedBol = false
+        }else{
+          checkedBol = true
+        }
+      }
+      return checkedBol
+    }
+   },
   methods:{
     changeBol(){
       this.bol = !this.bol
@@ -56,41 +78,18 @@ export default {
     },
     //切换全选
     changeAllBol(){
-      if(!this.checkAllBol){
-        this.checkAllBol = true
-        for(let i = 0 ; i < this.favorList.length ; i++){
-          this.favorList[i].checkBol = true
-        }
-        //更改所有收藏的选中状态
-        this.$store.dispatch("change_all_true")
-        .then(res =>{
-          this.$msg("提示",res.msg)
-        }) 
-      }else{
-        this.checkAllBol = false
-         for(let i = 0 ; i < this.favorList ; i++){
-          this.favorList[i].checkBol = false
-        }
-        //更改所有收藏的选中状态
+       if(this.checkedBol){
+        //表示已经全选,点击后更改商品选中状态为false
         this.$store.dispatch("change_all_false")
-        .then(res =>{
-          this.$msg("提示",res.msg)
-        }) 
+      }else{
+        //表示没有全选,点击后更改商品选中状态为true
+        this.$store.dispatch("change_all_true")
       }
     }
   },
   components:{
     HeadCart
   },
-  computed:{
-    //拿到收藏列表
-    favorList(){
-      return this.$store.state.favorList
-    },
-    users(){
-      return this.$store.state.users
-     }
-   }
 }
 </script>
 
@@ -161,6 +160,10 @@ ul{
     display: inline-block;
     padding-left: 4.4rem;
     background: url('./images/checkbox.png') 1.4rem center no-repeat;
+    background-size: 1.8rem 1.8rem;
+  }
+  .allSelect.active{
+    background: url('./images/checkbox-selectd.png') 1.4rem center no-repeat;
     background-size: 1.8rem 1.8rem;
   }
   .deleteBtn {

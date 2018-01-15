@@ -25,7 +25,7 @@
       <!-- 底部 -->
       <div class="footer">
         <div class="collect">
-          <span class="collect-span" @click="favorProduct(productInfo)" :class="{'active':productInfo.favor === true}">收藏</span>
+          <span class="collect-span" @click="favorProduct(productInfo)" :class="{'active':productInfo.favor}">收藏</span>
           <div class="collect-add">
             添加商品:
             <div class="btn-wrap">

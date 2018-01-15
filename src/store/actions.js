@@ -391,12 +391,8 @@ export default {
       http.patch(api.host + '/favorList/' + favorList[i].id ,{
         checkBol : true
       })
-      .then(res=>{
-          //同步本地数据
-        store.commit("CHANGE_ALL_TRUE")
-        return {"msg":"全选成功"}
-      })
     }
+    store.commit("CHANGE_ALL_TRUE")
   },
   //全不选
   change_all_false(store){
@@ -405,12 +401,8 @@ export default {
       http.patch(api.host + '/favorList/'+ favorList[i].id,{
         checkBol : false
       })
-      .then(res=>{
-        //保存到本地
-         store.commit("CHANGE_ALL_FALSE",data)
-          return {"msg":"取消全选成功"}
-        })
     }
+    store.commit("CHANGE_ALL_FALSE")
   },
 
 }

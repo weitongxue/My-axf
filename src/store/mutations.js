@@ -184,14 +184,14 @@ export default{
     CHANGE_ALL_TRUE(state){
         let favorList = state.favorList
         for(let i = 0 ; i < favorList.length ; i++){
-          favorList[i].checked = true
+          favorList[i].checkBol = true
         }
     },
      //全不选
      CHANGE_ALL_FALSE(state){
         let favorList = state.favorList
         for(let i = 0 ; i < favorList.length ; i++){
-          favorList[i].checked = false
+          favorList[i].checkBol = false
         }
     },
    
