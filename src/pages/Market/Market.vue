@@ -265,7 +265,7 @@ export default {
           span{
             display: block;
             width: 1rem;
-            height: .5rem;
+            height: .7rem;
             background: url("./images/icon-down.png") 0 0 no-repeat;
             background-size: 1rem;
             position: absolute;

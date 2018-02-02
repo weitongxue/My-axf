@@ -15,12 +15,12 @@
             <th>
               收<span class="text-hidden">h</span>货<span class="text-hidden">h</span>人
             </th>
-            <td>{{users.selectSite.lianxiren}} {{users.selectSite.sex === 0 ? '先生': '女士'}}</td>
+            <td>{{users.selectSite.lianxiren}}{{users.selectSite.sex === 0 ? '先生': '女士'}}</td>
             <router-link tag="td" to='/site' rowspan="3" class="amend">修改</router-link>
           </tr>
           <tr>
             <th>电<span class="text-hidden">隐藏</span>话</th>
-            <td>{{users.selectSite.phone}}</td>
+            <td>{{users.phone}}</td>
           </tr>
           <tr>
             <th>收货地址</th>
@@ -107,6 +107,7 @@ export default {
       this.$msg("提示","未登录，请先登录")
       this.$router.push('/longin')
     }
+    console.log()
   },
   data(){
     return {
